@@ -1,0 +1,67 @@
+@import url('https://fonts.cdnfonts.com/css/general-sans');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+.bg1{
+    background: linear-gradient(90deg, #FBC2EB 0%, #A6C1EE 100%);
+
+}
+.bg2{
+    background: linear-gradient(90deg, #FBC2EB 0%, #A6C1EE 100%);
+
+}
+.bg3{
+    border-radius: 15px;
+    background: linear-gradient(90deg, #FBC2EB 0%, #A6C1EE 100%);
+    box-shadow: 0px 69px 19px 0px rgba(0, 0, 0, 0.00), 0px 44px 18px 0px rgba(0, 0, 0, 0.01), 0px 25px 15px 0px rgba(0, 0, 0, 0.05), 0px 11px 11px 0px rgba(0, 0, 0, 0.09), 0px 3px 6px 0px rgba(0, 0, 0, 0.10);
+}
+
+.font1{
+    font-family: 'General Sans', sans-serif;
+
+}
+
+.josefinbold{
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+}
+.josefinmedium{
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+}
+.josefinregular{
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+.worksansregular{
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+.worksanssbold{
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+}
+
+
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
