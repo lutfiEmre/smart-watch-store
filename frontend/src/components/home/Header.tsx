@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import homeheader from '../../assets/homeheader.svg';
 
@@ -46,7 +46,7 @@ const Header = () => {
                             style={{ fontFamily: 'JosefinSans-Bold' }}
                             variants={itemVariants}
                         >
-                            Your Source for Stylish Smartwatches
+                            Your Source for  <br className={'hidden lg:flex '}/> Stylish Smartwatches
                         </motion.h4>
 
                         <motion.h6
@@ -60,7 +60,7 @@ const Header = () => {
                         </motion.h6>
 
                         <motion.div
-                            className="bg3 px-[13px] ml-1 mt-2 lg:scale-100 scale-125 py-[12px] cursor-pointer select-none
+                            className="bg3 px-[25px] lg:px-[13px] ml-1 mt-2 lg:scale-120 scale-[150%] py-[17px] lg:py-[12px] cursor-pointer select-none
                         hover:shadow-lg transition-all duration-300 ease-in-out"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -94,7 +94,7 @@ const Header = () => {
                             }}
                         />
                         <motion.img
-                            className="2xl:w-[720px] w-[250px] lg:w-[700px] xl:w-[800px] sm:h-[350px] lg:h-auto object-cover relative z-10"
+                            className="2xl:w-[720px] w-[250px] lg:w-[700px] xl:w-[800px] sm:h-[350px] lg:max-h-[600px] lg:h-auto object-cover relative z-10"
                             src={homeheader}
                             alt="Smartwatch Showcase"
                             initial={{ opacity: 0, y: 50 }}

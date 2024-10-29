@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import saat1 from '../assets/clocks/saat1.svg';
-import saat2 from '../assets/clocks/Home/3/unsplash_qS3sqPT1T9s.svg';
-import saat3 from '../assets/clocks/Home/3/unsplash_d5LmhzNBBXo.svg';
-import saat4 from '../assets/clocks/Home/3/unsplash_fFOar3AwgzQ.svg';
-import saat5 from '../assets/clocks/Home/3/unsplash_Vk3QiwyrAUA.svg';
-import saat6 from '../assets/clocks/Home/3/unsplash_moJvG_1AwMU.svg';
+import saat1 from '../../assets/clocks/saat1.svg';
+import saat2 from '../../assets/clocks/Home/3/unsplash_qS3sqPT1T9s.svg';
+import saat3 from '../../assets/clocks/Home/3/unsplash_d5LmhzNBBXo.svg';
+import saat4 from '../../assets/clocks/Home/3/unsplash_fFOar3AwgzQ.svg';
+import saat5 from '../../assets/clocks/Home/3/unsplash_Vk3QiwyrAUA.svg';
+import saat6 from '../../assets/clocks/Home/3/unsplash_moJvG_1AwMU.svg';
 
-const WatchesList = () => {
-    const [watches, setWatches] = useState([
+// Interface'leri component dışında tanımlayalım
+interface WatchProp {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    category: 'luxury' | 'sport' | 'classic';
+}
+
+type PriceRangeType = 'all' | 'low' | 'medium' | 'high';
+type CategoryType = 'all' | 'luxury' | 'sport' | 'classic';
+
+const WatchesList: React.FC = () => {
+    const [watches] = useState<WatchProp[]>([
         {
             id: 1,
             name: "Luxe 2 series",
@@ -52,21 +64,18 @@ const WatchesList = () => {
         }
     ]);
 
-    const [filteredWatches, setFilteredWatches] = useState(watches);
-    const [selectedCategory, setSelectedCategory] = useState("all");
-    const [priceRange, setPriceRange] = useState("all");
-    const [favorites, setFavorites] = useState([]);
+    const [filteredWatches, setFilteredWatches] = useState<WatchProp[]>(watches);
+    const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
+    const [priceRange, setPriceRange] = useState<PriceRangeType>('all');
+    const [favorites, setFavorites] = useState<number[]>([]);
 
-    // Filter handling
     useEffect(() => {
-        let result = [...watches];
+        let result: WatchProp[] = [...watches];
 
-        // Category filter
         if (selectedCategory !== "all") {
             result = result.filter(watch => watch.category === selectedCategory);
         }
 
-        // Price range filter
         if (priceRange === "low") {
             result = result.filter(watch => watch.price < 20000);
         } else if (priceRange === "medium") {
@@ -78,34 +87,36 @@ const WatchesList = () => {
         setFilteredWatches(result);
     }, [selectedCategory, priceRange, watches]);
 
-    const toggleFavorite = (id) => {
-        setFavorites(prev =>
+    const toggleFavorite = (id: number): void => {
+        setFavorites((prev: number[]) =>
             prev.includes(id)
                 ? prev.filter(fid => fid !== id)
                 : [...prev, id]
         );
     };
 
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        setSelectedCategory(e.target.value as CategoryType);
+    };
+
+    const handlePriceRangeChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        setPriceRange(e.target.value as PriceRangeType);
+    };
+
     return (
         <div className="flex mt-0 gap-12 px-[100px] lg:px-0 flex-col w-full">
             <div className="flex flex-col sm:justify-start sm:items-start justify-center items-center w-full gap-4">
-                <h6 className="text-gray text-sm">
-                    Home - Men
-                </h6>
-                <h6 className="text-darkblue text-4xl font-bold">
-                    Watches
-                </h6>
+                <h6 className="text-gray text-sm">Home - Men</h6>
+                <h6 className="text-darkblue text-4xl font-bold">Watches</h6>
 
-                {/* Filters Section */}
-                <div className="w-full flex flex-col gap-[25px] lg:gap-0 md:flex-row  justify-between items-center bg-gray-50 p-4 rounded-lg">
+                <div className="w-full flex flex-col gap-[25px] lg:gap-0 md:flex-row justify-between items-center bg-gray-50 p-4 rounded-lg">
                     <h6 className="text-gray text-xl">
                         {filteredWatches.length} products
                     </h6>
-                    <div className="flex flex-col lg:flex-row  gap-4">
-                        {/* Native Select for Category */}
+                    <div className="flex flex-col lg:flex-row gap-4">
                         <select
                             value={selectedCategory}
-                            onChange={(e) => setSelectedCategory(e.target.value)}
+                            onChange={handleCategoryChange}
                             className="px-4 py-2 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="all">All Categories</option>
@@ -114,10 +125,9 @@ const WatchesList = () => {
                             <option value="classic">Classic</option>
                         </select>
 
-                        {/* Native Select for Price Range */}
                         <select
                             value={priceRange}
-                            onChange={(e) => setPriceRange(e.target.value)}
+                            onChange={handlePriceRangeChange}
                             className="px-4 py-2 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="all">All Prices</option>
@@ -129,9 +139,8 @@ const WatchesList = () => {
                 </div>
             </div>
 
-            {/* Watches Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-8 w-full">
-                {filteredWatches.map((watch) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                {filteredWatches.map((watch: WatchProp) => (
                     <div
                         key={watch.id}
                         className="flex flex-col cursor-pointer gap-6 w-full bg-white rounded-lg p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
@@ -144,7 +153,7 @@ const WatchesList = () => {
                             />
                         </div>
 
-                        <h6 className="font-bold text-2xl text-darkblue">
+                        <h6 className="font-bold md:text-start text-center text-2xl text-darkblue">
                             {watch.name}
                         </h6>
 
