@@ -104,7 +104,7 @@ const WatchesList: React.FC = () => {
     };
 
     return (
-        <div className="flex mt-0 gap-12 px-[100px] lg:px-0 flex-col w-full">
+        <div className="flex mt-0 gap-12  lg:px-0 flex-col w-full">
             <div className="flex flex-col sm:justify-start sm:items-start justify-center items-center w-full gap-4">
                 <h6 className="text-gray text-sm">Home - Men</h6>
                 <h6 className="text-darkblue text-4xl font-bold">Watches</h6>
