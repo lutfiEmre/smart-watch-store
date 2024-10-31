@@ -60,6 +60,11 @@
     font-optical-sizing: auto;
     font-weight: 400;
 }
+.worksansmedium{
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+}
 .worksanssbold{
     font-family: "Work Sans", sans-serif;
     font-optical-sizing: auto;

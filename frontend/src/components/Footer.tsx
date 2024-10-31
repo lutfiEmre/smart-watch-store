@@ -2,8 +2,8 @@
 
 const Footer = () => {
     return (
-        <div className="flex flex-row py-[48px] px-[80px] gap-[32px] mt-[112px] w-full">
-            <div className={'flex flex-col gap-[24px]'}>
+        <div className="flex flex-col flex-wrap gap-[50px] justify-center items-center  sm:flex-row py-[48px] px-[80px] sm:gap-[32px] mt-[112px] w-full">
+            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
                 <h6 className={'playfairregular text-[30px] text-darkblue'}>
                     Luxe
                 </h6>
@@ -56,6 +56,59 @@ const Footer = () => {
 
                     </div>
                 </div>
+            </div>
+            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+                <h6 className={'worksanssbold text-[16px] text-darkblue'}>
+                    Company
+                </h6>
+                <ul className={'flex flex-col gap-[16px]'}>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Blog
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Pricing
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        About us
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Contact us
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Testimonials
+                    </li>
+
+                </ul>
+            </div>
+            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+                <ul className={'flex flex-col gap-[16px]'}>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Legal policy
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Status policy
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Privacy policy
+                    </li>
+                    <li className={'worksansregular text-[16px] text-gray'}>
+                        Terms of service
+                    </li>
+
+
+                </ul>
+            </div>
+            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+                <h6 className={'worksansmedium text-[16px] text-darkblue'}>
+                    Get Updates
+                </h6>
+                <div className={'border-[#D1D5DB] flex flex-row border-[1px]   p-[15px]'}>
+                    <input placeholder={"Enter your email"} className={'outline-none min-w-[232px] w-full active:outline-none'} type="text"/>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.8934 7.10474L14.8884 7.10257L1.54219 1.62461C1.42993 1.57811 1.30778 1.55988 1.18666 1.57154C1.06554 1.58319 0.949225 1.62438 0.848125 1.69141C0.741311 1.76067 0.653573 1.85512 0.592805 1.96627C0.532037 2.07742 0.500145 2.20177 0.5 2.32814V5.83158C0.50006 6.00434 0.561019 6.17166 0.67237 6.30472C0.783722 6.43777 0.938491 6.52822 1.11 6.56047L8.38906 7.89238C8.41767 7.89775 8.44348 7.91283 8.46205 7.93502C8.48062 7.9572 8.49078 7.98511 8.49078 8.01392C8.49078 8.04273 8.48062 8.07063 8.46205 8.09282C8.44348 8.11501 8.41767 8.13008 8.38906 8.13545L1.11031 9.46737C0.938851 9.49953 0.784092 9.58986 0.67269 9.72279C0.561288 9.85573 0.500219 10.0229 0.5 10.1956V13.6997C0.499917 13.8204 0.530111 13.9392 0.587871 14.0454C0.645632 14.1517 0.729152 14.2421 0.830938 14.3086C0.953375 14.3891 1.09706 14.4321 1.24406 14.4323C1.34626 14.4322 1.4474 14.4119 1.54156 14.3726L14.8875 8.92588L14.8934 8.9231C15.0731 8.8467 15.2262 8.71985 15.3337 8.55826C15.4413 8.39667 15.4986 8.20742 15.4986 8.01392C15.4986 7.82042 15.4413 7.63117 15.3337 7.46957C15.2262 7.30798 15.0731 7.18114 14.8934 7.10474Z" fill="#1F2937"/>
+                    </svg>
+                </div>
+
             </div>
         </div>
     );
