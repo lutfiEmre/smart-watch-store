@@ -1,9 +1,11 @@
+import {useNavigate} from "react-router";
 
 
 const Footer = () => {
+    const navigate = useNavigate()
     return (
         <div className="flex flex-col flex-wrap gap-[50px] justify-center items-center  sm:flex-row py-[48px] px-[80px] sm:gap-[32px] mt-[112px] w-full">
-            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+            <div className={'flex flex-col sm:min-w-[300px] lg:min-w-[250px] gap-[24px]'}>
                 <h6 className={'playfairregular text-[30px] text-darkblue'}>
                     Luxe
                 </h6>
@@ -57,12 +59,12 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+            <div className={'flex flex-col sm:min-w-[300px] lg:min-w-[250px] gap-[24px]'}>
                 <h6 className={'worksanssbold text-[16px] text-darkblue'}>
                     Company
                 </h6>
                 <ul className={'flex flex-col gap-[16px]'}>
-                    <li className={'worksansregular text-[16px] text-gray'}>
+                    <li onClick={() => {navigate('/blog')}} className={'worksansregular text-[16px] text-gray'}>
                         Blog
                     </li>
                     <li className={'worksansregular text-[16px] text-gray'}>
@@ -80,7 +82,7 @@ const Footer = () => {
 
                 </ul>
             </div>
-            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+            <div className={'flex flex-col sm:min-w-[300px] lg:min-w-[250px] gap-[24px]'}>
                 <ul className={'flex flex-col gap-[16px]'}>
                     <li className={'worksansregular text-[16px] text-gray'}>
                         Legal policy
@@ -98,7 +100,7 @@ const Footer = () => {
 
                 </ul>
             </div>
-            <div className={'flex flex-col sm:min-w-[300px] gap-[24px]'}>
+            <div className={'flex flex-col sm:min-w-[300px] lg:min-w-[250px] gap-[24px]'}>
                 <h6 className={'worksansmedium text-[16px] text-darkblue'}>
                     Get Updates
                 </h6>
