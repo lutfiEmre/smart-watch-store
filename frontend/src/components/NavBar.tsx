@@ -73,7 +73,7 @@ const NavBar = () => {
     ];
 
     return (
-        <div className={'w-full mt-[20px] flex flex-wrap flex-col sm:flex-row px-[80px] xl:px-[25px] 2xl:px-[80px] items-center justify-between'}>
+        <div className={'w-full mt-[20px] sticky top-0 left-0 z-20 bg-white pt-[20px] flex flex-wrap flex-col sm:flex-row px-[80px] xl:px-[25px] 2xl:px-[80px] items-center justify-between'}>
             {/* Logo and Menu Button Section */}
             <div className={'pl-[18px] flex flex-row gap-[20px] items-center p-[25px] sm:pb-[50px]'}>
                 <motion.button
@@ -125,7 +125,7 @@ const NavBar = () => {
             </div>
 
             {/* Desktop görünümündeki arama ve kategori bölümü */}
-            <div className={'flex-col xl:flex hidden'}>
+            <div className={'flex-col  xl:flex hidden'}>
                 <div className={'w-[620px] items-center h-[48px] rounded-[8px] p-[8px] bg-[#F5F5F7]'}>
                     <div className={'flex h-fit flex-row items-center gap-[16px]'}>
                         <div className={'relative'}>
@@ -263,6 +263,7 @@ const NavBar = () => {
                         </svg>
                     </motion.div>
                     <motion.div
+                        onClick={() => {navigate('/shop')}}
                         className={'p-[8px] cursor-pointer bg-[#F5F5F7] h-fit rounded-[8px]'}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
