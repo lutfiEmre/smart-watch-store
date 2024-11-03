@@ -1,4 +1,4 @@
-import React from 'react';
+
 import MiniTopBar from "../MiniTopBar.tsx";
 import NavBar from "../NavBar.tsx";
 import Header from "./Header.tsx";
