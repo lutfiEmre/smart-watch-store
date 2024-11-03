@@ -1,19 +1,7 @@
+// src/components/WatchesList.tsx
 import React, { useState, useEffect } from 'react';
-import saat1 from '../../assets/clocks/saat1.svg';
-import saat2 from '../../assets/clocks/Home/3/unsplash_qS3sqPT1T9s.svg';
-import saat3 from '../../assets/clocks/Home/3/unsplash_d5LmhzNBBXo.svg';
-import saat4 from '../../assets/clocks/Home/3/unsplash_fFOar3AwgzQ.svg';
-import saat5 from '../../assets/clocks/Home/3/unsplash_Vk3QiwyrAUA.svg';
-import saat6 from '../../assets/clocks/Home/3/unsplash_moJvG_1AwMU.svg';
-import useCartStore from '../../helpers/useCartStore.ts'
-
-interface WatchProp {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    category: 'luxury' | 'sport' | 'classic';
-}
+import useCartStore from '../../helpers/useCartStore.ts';
+import api, { Product } from '../../services/api.ts';
 
 type PriceRangeType = 'all' | 'low' | 'medium' | 'high';
 type CategoryType = 'all' | 'luxury' | 'sport' | 'classic';
@@ -27,61 +15,28 @@ const WatchesList: React.FC = () => {
         getItemQuantity
     } = useCartStore();
 
-    useEffect(() => {
-        fetchFavorites();
-    }, [fetchFavorites]);
-
-    const [watches] = useState<WatchProp[]>([
-        {
-            id: 1,
-            name: "Luxe 2 series",
-            price: 23000,
-            image: saat1,
-            category: "luxury"
-        },
-        {
-            id: 2,
-            name: "Classic Elite",
-            price: 18000,
-            image: saat2,
-            category: "classic"
-        },
-        {
-            id: 3,
-            name: "Sport Pro",
-            price: 15000,
-            image: saat3,
-            category: "sport"
-        },
-        {
-            id: 4,
-            name: "Diamond Series",
-            price: 35000,
-            image: saat4,
-            category: "luxury"
-        },
-        {
-            id: 5,
-            name: "Chronograph X",
-            price: 28000,
-            image: saat5,
-            category: "sport"
-        },
-        {
-            id: 6,
-            name: "Vintage Collection",
-            price: 21000,
-            image: saat6,
-            category: "classic"
-        }
-    ]);
-
-    const [filteredWatches, setFilteredWatches] = useState<WatchProp[]>(watches);
+    const [watches, setWatches] = useState<Product[]>([]);
+    const [filteredWatches, setFilteredWatches] = useState<Product[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
     const [priceRange, setPriceRange] = useState<PriceRangeType>('all');
 
     useEffect(() => {
-        let result: WatchProp[] = [...watches];
+        const fetchData = async () => {
+            try {
+                const products = await api.getProducts();
+                setWatches(products);
+                setFilteredWatches(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchData();
+        fetchFavorites();
+    }, [fetchFavorites]);
+
+    useEffect(() => {
+        let result = [...watches];
 
         if (selectedCategory !== "all") {
             result = result.filter(watch => watch.category === selectedCategory);
@@ -98,8 +53,8 @@ const WatchesList: React.FC = () => {
         setFilteredWatches(result);
     }, [selectedCategory, priceRange, watches]);
 
-    const handleAddToCart = (watch: WatchProp) => {
-        addItem(watch);
+    const handleAddToCart = async (watch: Product) => {
+        await addItem(watch.id);
     };
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -147,7 +102,7 @@ const WatchesList: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-                {filteredWatches.map((watch: WatchProp) => (
+                {filteredWatches.map((watch) => (
                     <div
                         key={watch.id}
                         className="flex flex-col gap-6 w-full bg-white rounded-lg p-4 hover:shadow-xl transition-all duration-300"

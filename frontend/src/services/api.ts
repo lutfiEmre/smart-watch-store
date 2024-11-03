@@ -2,8 +2,6 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8089/api';
-
-// Geçici user ID (normalde auth sisteminden gelecek)
 const USER_ID = 'temp-user-id';
 
 export interface Product {
@@ -26,6 +24,11 @@ const api = {
     // Products
     getProducts: async () => {
         const response = await axios.get<Product[]>(`${API_URL}/products`);
+        return response.data;
+    },
+
+    getProduct: async (id: number) => {
+        const response = await axios.get<Product>(`${API_URL}/products/${id}`);
         return response.data;
     },
 

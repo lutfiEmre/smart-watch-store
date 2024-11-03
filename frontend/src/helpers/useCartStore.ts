@@ -1,28 +1,28 @@
 // src/stores/useCartStore.ts
-import { create } from 'zustand'
-import api, { CartItem } from '../services/api'
+import { create } from 'zustand';
+import api, { CartItem } from '../services/api';
 
 interface CartStore {
-    items: CartItem[]
-    favorites: number[]
-    isLoading: boolean
-    error: string | null
+    items: CartItem[];
+    favorites: number[];
+    isLoading: boolean;
+    error: string | null;
 
     // Cart actions
-    fetchCart: () => Promise<void>
-    addItem: (productId: number, quantity?: number) => Promise<void>
-    removeItem: (productId: number) => Promise<void>
-    updateQuantity: (productId: number, quantity: number) => Promise<void>
+    fetchCart: () => Promise<void>;
+    addItem: (productId: number, quantity?: number) => Promise<void>;
+    removeItem: (productId: number) => Promise<void>;
+    updateQuantity: (productId: number, quantity: number) => Promise<void>;
 
     // Favorites actions
-    fetchFavorites: () => Promise<void>
-    toggleFavorite: (productId: number) => Promise<void>
+    fetchFavorites: () => Promise<void>;
+    toggleFavorite: (productId: number) => Promise<void>;
 
     // Calculations
-    getSubtotal: () => number
-    getTotal: () => number
-    getItemQuantity: (productId: number) => number
-    getCartCount: () => number
+    getSubtotal: () => number;
+    getTotal: () => number;
+    getItemQuantity: (productId: number) => number;
+    getCartCount: () => number;
 }
 
 const useCartStore = create<CartStore>((set, get) => ({
@@ -41,7 +41,7 @@ const useCartStore = create<CartStore>((set, get) => ({
         }
     },
 
-    addItem: async (productId, quantity = 1) => {
+    addItem: async (productId: number, quantity = 1) => {
         set({ isLoading: true, error: null });
         try {
             await api.addToCart(productId, quantity);
@@ -51,7 +51,7 @@ const useCartStore = create<CartStore>((set, get) => ({
         }
     },
 
-    removeItem: async (productId) => {
+    removeItem: async (productId: number) => {
         set({ isLoading: true, error: null });
         try {
             await api.removeFromCart(productId);
@@ -61,7 +61,7 @@ const useCartStore = create<CartStore>((set, get) => ({
         }
     },
 
-    updateQuantity: async (productId, quantity) => {
+    updateQuantity: async (productId: number, quantity: number) => {
         set({ isLoading: true, error: null });
         try {
             await api.updateCartQuantity(productId, quantity);
@@ -80,7 +80,7 @@ const useCartStore = create<CartStore>((set, get) => ({
         }
     },
 
-    toggleFavorite: async (productId) => {
+    toggleFavorite: async (productId: number) => {
         try {
             await api.toggleFavorite(productId);
             await get().fetchFavorites();
@@ -101,7 +101,7 @@ const useCartStore = create<CartStore>((set, get) => ({
         return subtotal + shipping + tax;
     },
 
-    getItemQuantity: (productId) => {
+    getItemQuantity: (productId: number) => {
         const item = get().items.find((i) => i.id === productId);
         return item?.quantity || 0;
     },
@@ -109,7 +109,7 @@ const useCartStore = create<CartStore>((set, get) => ({
     getCartCount: () => {
         const { items } = get();
         return items.reduce((total, item) => total + item.quantity, 0);
-    },
+    }
 }));
 
 export default useCartStore;
