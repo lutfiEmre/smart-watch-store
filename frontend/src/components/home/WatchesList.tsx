@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import useCartStore from '../../helpers/useCartStore.ts';
 import api, { Product } from '../../services/api.ts';
+import {useNavigate} from "react-router";
 
 type PriceRangeType = 'all' | 'low' | 'medium' | 'high';
 type CategoryType = 'all' | 'luxury' | 'sport' | 'classic';
@@ -19,7 +20,7 @@ const WatchesList: React.FC = () => {
     const [filteredWatches, setFilteredWatches] = useState<Product[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
     const [priceRange, setPriceRange] = useState<PriceRangeType>('all');
-
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -104,10 +105,11 @@ const WatchesList: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
                 {filteredWatches.map((watch) => (
                     <div
+
                         key={watch.id}
-                        className="flex flex-col gap-6 w-full bg-white rounded-lg p-4 hover:shadow-xl transition-all duration-300"
+                        className="flex flex-col cursor-pointer gap-6 w-full bg-white rounded-lg p-4 hover:shadow-xl transition-all duration-300"
                     >
-                        <div className="relative flex items-center justify-center overflow-hidden h-[300px] w-full rounded-lg">
+                        <div  onClick={() => {navigate(`/watchview/${watch.id}`)}} className="relative flex items-center justify-center overflow-hidden h-[300px] w-full rounded-lg">
                             <img
                                 className="w-[250px] h-[250px] object-cover transition-transform duration-300 hover:scale-110"
                                 src={watch.image}
@@ -115,11 +117,11 @@ const WatchesList: React.FC = () => {
                             />
                         </div>
 
-                        <h6 className="font-bold md:text-start text-center text-2xl text-darkblue">
+                        <h6  onClick={() => {navigate(`/watchview/${watch.id}`)}} className="font-bold md:text-start text-center text-2xl text-darkblue">
                             {watch.name}
                         </h6>
 
-                        <div className="w-full flex justify-between items-center">
+                        <div  className="w-full flex justify-between items-center">
                             <div className="flex flex-col gap-2">
                                 <h6 className="text-xl text-darkblue">
                                     ${watch.price.toLocaleString()}

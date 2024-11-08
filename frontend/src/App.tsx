@@ -19,7 +19,7 @@ function App() {
 
               <Route path={"/"} element={<HomePage/>}/>
               <Route path={"/blog"} element={<Blog/>}/>
-              <Route path={"/watchview"} element={<WatchView/>}/>
+              <Route path="/watchview/:id" element={<WatchView/>}/>
               <Route path={"/shop"} element={<ShoppingCard/>}/>
 
           </Routes>
