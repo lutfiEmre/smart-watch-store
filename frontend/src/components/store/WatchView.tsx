@@ -6,12 +6,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import api, { Product } from '../../services/api.ts';
 import useCartStore from "../../helpers/useCartStore.ts";
 
-interface Watch extends Product {
+interface Watch {
     id: number;
     name: string;
     price: number;
     image: string;
-    category: string;
+    category: any;
     code: string;
     height: string;
     color: string;
@@ -46,7 +46,7 @@ const WatchView = () => {
                     throw new Error('Invalid watch ID');
                 }
 
-                const watchData = await api.getProduct(watchId);
+                const watchData : any = await api.getProduct(watchId);
                 setWatch(watchData);
             } catch (error) {
                 console.error('Error fetching watch:', error);

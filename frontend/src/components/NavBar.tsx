@@ -77,7 +77,7 @@ const NavBar = () => {
             {/* Logo and Menu Button Section */}
             <div className={'pl-[18px] flex flex-row gap-[20px] items-center p-[25px] sm:pb-[50px]'}>
                 <motion.button
-                    onClick={(e: React.MouseEvent) => setIsOpen(!isOpen)}
+                    onClick={() => setIsOpen(!isOpen)}
 
                     className="relative xl:hidden flex z-50 p-2"
                     aria-label="Toggle menu"
