@@ -9,7 +9,7 @@ const port = process.env.PORT || 8089;
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://smart-watch-store-iiva.vercel.app'],
     credentials: true
 }));
 app.use(bodyParser.json());
